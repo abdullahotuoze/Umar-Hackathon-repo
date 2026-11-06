@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Umar Abdullah Otuoze — Java Backend Developer and Computer Science undergraduate.">
+  <meta name="theme-color" content="#101827">
+  <title>Umar Abdullah Otuoze | Java Backend Developer</title>
+  <style>
+    :root {
+      --navy: #101827;
+      --navy-2: #172338;
+      --blue: #4f9cf9;
+      --blue-soft: #eaf3ff;
+      --ink: #202b3c;
+      --muted: #667085;
+      --paper: #f5f7fb;
+      --white: #fff;
+      --line: #e5eaf1;
+      --shadow: 0 14px 40px rgba(20, 34, 58, .08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.7 Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    a { color: inherit; }
+    .sidebar {
+      position: fixed; inset: 0 auto 0 0; width: 278px; z-index: 20;
+      padding: 34px 24px; display: flex; flex-direction: column; align-items: center;
+      background: var(--navy); color: #f8fafc; overflow-y: auto;
+    }
+    .avatar { width: 116px; height: 116px; border-radius: 50%; object-fit: cover; object-position: center 38%; border: 5px solid #34445d; box-shadow: 0 8px 26px #0005; }
+    .brand { margin: 15px 0 3px; color: white; font-size: 1.22rem; font-weight: 800; letter-spacing: -.03em; text-align: center; text-decoration: none; }
+    .role { color: #b8c4d6; font-size: .88rem; margin: 0 0 20px; }
+    .socials { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; margin-bottom: 27px; }
+    .socials a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 39px; height: 39px; border-radius: 50%; background: #26364e;
+      color: #eaf2ff; text-decoration: none; font-size: .78rem; font-weight: 800;
+      border: 1px solid #3a4b65; transition: .2s ease;
+    }
+    .socials a:hover { background: var(--blue); color: #07111f; transform: translateY(-2px); }
+    .nav { width: 100%; display: grid; gap: 7px; }
+    .nav a { color: #c5cfdd; text-decoration: none; padding: 10px 13px; border-radius: 9px; font-weight: 650; transition: .2s ease; }
+    .nav a:hover, .nav a.active { color: white; background: #26364e; }
+    .nav a span { display: inline-block; width: 28px; color: #8ea1bb; }
+    .side-foot { margin-top: auto; padding-top: 26px; color: #8796ab; font-size: .76rem; text-align: center; }
+    .mobile-top { display: none; }
+    main { margin-left: 278px; }
+    .container { width: min(1080px, calc(100% - 64px)); margin: 0 auto; }
+    .hero { min-height: 570px; display: flex; align-items: center; background: linear-gradient(120deg, #eaf2fb 0%, #f7f9fc 58%, #e7eff9 100%); position: relative; overflow: hidden; }
+    .hero::after { content: ""; position: absolute; width: 420px; height: 420px; border-radius: 50%; border: 1px solid #d2dfed; right: -110px; top: -120px; box-shadow: 0 0 0 35px #dce8f533, 0 0 0 75px #dce8f522; }
+    .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.2fr .8fr; gap: 42px; align-items: center; padding: 70px 0; }
+    .eyebrow { color: #3479c8; font-size: .78rem; font-weight: 850; letter-spacing: .16em; text-transform: uppercase; }
+    h1 { margin: 12px 0 16px; font-size: clamp(2.7rem, 5vw, 4.6rem); line-height: 1.03; letter-spacing: -.06em; color: #142238; }
+    .hero p { max-width: 610px; color: #5b687a; font-size: 1.08rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 19px; border-radius: 8px; text-decoration: none; font-weight: 750; border: 1px solid #3479c8; transition: .2s ease; }
+    .btn.primary { background: #3479c8; color: white; }
+    .btn.primary:hover { background: #225f9f; }
+    .btn.secondary { color: #2767ad; background: white; }
+    .hero-photo { width: min(100%, 330px); aspect-ratio: 4 / 5; justify-self: end; object-fit: cover; object-position: center 38%; border-radius: 18px; border: 9px solid white; box-shadow: 0 22px 55px #1d355333; }
+    section { padding: 76px 0; }
+    .section-title { margin-bottom: 30px; }
+    .section-title .eyebrow { margin-bottom: 5px; }
+    h2 { margin: 0; font-size: clamp(1.8rem, 3vw, 2.45rem); letter-spacing: -.045em; color: #17263b; }
+    .section-title p { margin: 8px 0 0; color: var(--muted); }
+    .about-layout { display: grid; grid-template-columns: 260px 1fr; gap: 30px; align-items: start; }
+    .about-photo { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 13px; box-shadow: var(--shadow); }
+    .about-copy h3 { margin: 0 0 10px; font-size: 1.35rem; }
+    .about-copy p { color: var(--muted); margin-top: 0; }
+    .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; margin: 22px 0; }
+    .fact { padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: white; }
+    .fact strong { color: #263d5c; margin-right: 6px; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { background: white; border: 1px solid var(--line); border-radius: 13px; padding: 23px; box-shadow: var(--shadow); }
+    .card h3 { margin: 0 0 9px; color: #1d2d44; }
+    .card p, .card li { color: var(--muted); }
+    .card ul { margin: 8px 0 0; padding-left: 19px; }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .pill { display: inline-block; background: var(--blue-soft); color: #245b94; border-radius: 999px; padding: 8px 13px; font-size: .9rem; font-weight: 700; }
+    .timeline { border-left: 3px solid #c6dcf4; padding-left: 24px; }
+    .timeline-item { position: relative; margin-bottom: 20px; }
+    .timeline-item::before { content: ""; position: absolute; left: -33px; top: 25px; width: 14px; height: 14px; border-radius: 50%; background: #438bd5; border: 3px solid #e7f1fc; }
+    .date { color: #3479c8; font-size: .86rem; font-weight: 800; }
+    .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .project-card { background: white; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+    .project-card img { width: 100%; display: block; aspect-ratio: 16 / 10; object-fit: cover; object-position: center; }
+    .project-card .content { padding: 18px 20px; }
+    .project-card h3 { margin: 0 0 6px; }
+    .project-card p { color: var(--muted); margin: 0; font-size: .94rem; }
+    .gallery { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .gallery img { width: 100%; aspect-ratio: 4 / 5; display: block; object-fit: cover; border-radius: 11px; box-shadow: var(--shadow); transition: transform .25s ease; }
+    .gallery img:hover { transform: translateY(-4px); }
+    .contact { background: #14243a; color: white; }
+    .contact h2 { color: white; }
+    .contact .section-title p { color: #bdc9d9; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .contact-card { padding: 21px; border: 1px solid #354a65; background: #1b304b; border-radius: 12px; }
+    .contact-card h3 { margin: 0 0 7px; color: #fff; }
+    .contact-card p { margin: 0; color: #c7d3e2; overflow-wrap: anywhere; }
+    .contact-card a { color: #9fcfff; text-decoration: none; }
+    .contact-card a:hover { text-decoration: underline; }
+    .social-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .social-list a { color: white; text-decoration: none; border: 1px solid #536b89; border-radius: 8px; padding: 9px 13px; font-weight: 700; font-size: .9rem; }
+    .social-list a:hover { background: #2b4a70; }
+    footer { margin-left: 278px; text-align: center; padding: 22px; color: #768397; font-size: .85rem; }
+    @media (max-width: 1050px) {
+      .sidebar { width: 235px; }
+      main, footer { margin-left: 235px; }
+      .container { width: min(100% - 44px, 920px); }
+      .hero-inner { gap: 24px; }
+      .gallery { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 760px) {
+      .sidebar { position: relative; width: 100%; min-height: auto; padding: 17px 18px; flex-direction: row; justify-content: space-between; gap: 12px; overflow: visible; }
+      .avatar, .role, .side-foot { display: none; }
+      .brand { margin: 0; font-size: 1rem; }
+      .socials { margin: 0 0 0 auto; }
+      .socials a { width: 34px; height: 34px; }
+      .nav { display: none; position: absolute; top: 100%; left: 0; padding: 12px 18px 17px; background: var(--navy); grid-template-columns: repeat(2, 1fr); box-shadow: 0 12px 20px #0002; }
+      .nav.open { display: grid; }
+      .mobile-top { display: inline-flex; background: #26364e; border: 1px solid #42536c; color: white; padding: 7px 10px; border-radius: 7px; }
+      main, footer { margin-left: 0; }
+      .hero { min-height: auto; }
+      .hero-inner { grid-template-columns: 1fr; padding: 52px 0; }
+      .hero-photo { justify-self: start; width: min(74%, 280px); }
+      .container { width: min(100% - 36px, 620px); }
+      section { padding: 58px 0; }
+      .about-layout { grid-template-columns: 1fr; }
+      .about-photo { width: min(70%, 260px); }
+      .cards { grid-template-columns: 1fr; }
+      .facts, .project-grid, .contact-grid { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <img class="avatar" src="assets/profile-photo.jpeg" alt="Umar Abdullah Otuoze">
+    <a class="brand" href="#home">Umar Abdullah Otuoze</a>
+    <p class="role">Java Backend Developer</p>
+    <div class="socials" aria-label="Social media links">
+      <a href="https://www.linkedin.com/in/1-am-otuoze?originalSubdomain=ng" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">in</a>
+      <a href="https://www.instagram.com/rx_pips/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">ig</a>
+      <a href="https://www.tiktok.com/@1_am_otuoze/" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok">tk</a>
+      <a href="https://x.com/1_am_otuoze" target="_blank" rel="noopener noreferrer" aria-label="X" title="X">𝕏</a>
+    </div>
+    <button class="mobile-top" id="menuToggle" aria-expanded="false" aria-controls="siteNav">Menu ☰</button>
+    <nav class="nav" id="siteNav" aria-label="Main navigation">
+      <a href="#home" class="active"><span>⌂</span>Home</a>
+      <a href="#about"><span>◉</span>About</a>
+      <a href="#skills"><span>✦</span>Skills</a>
+      <a href="#experience"><span>▤</span>Resume</a>
+      <a href="#projects"><span>▣</span>Portfolio</a>
+      <a href="#photos"><span>▧</span>Photos</a>
+      <a href="#contact"><span>✉</span>Contact</a>
+    </nav>
+    <div class="side-foot">© <span id="sideYear"></span> Umar Abdullah Otuoze</div>
+  </aside>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div>
+          <div class="eyebrow">Java Backend Developer</div>
+          <h1>Building useful things with code.</h1>
+          <p>I'm Umar Abdullah Otuoze, a Computer Science undergraduate developing backend applications with Java, Spring Boot and MySQL. I enjoy turning problems into clear, practical software solutions.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#projects">Explore my work</a>
+            <a class="btn secondary" href="#contact">Connect with me</a>
+          </div>
+        </div>
+        <img class="hero-photo" src="assets/profile-photo.jpeg" alt="Umar Abdullah Otuoze working at a laptop">
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-title"><div class="eyebrow">A little about me</div><h2>About</h2><p>Learn more about my background and what I enjoy working on.</p></div>
+        <div class="about-layout">
+          <img class="about-photo" src="assets/gallery-4.jpeg" alt="Portrait of Umar Abdullah Otuoze">
+          <div class="about-copy">
+            <h3>Java Backend Developer & Computer Science Student</h3>
+            <p>I'm studying for a B.Sc. in Computer Science at Bamidele Olumilua University of Education, Science and Technology, Ikere-Ekiti. I'm building my backend development experience through structured training, internship work and practical projects.</p>
+            <p>I enjoy working with REST APIs, database operations, application logic, request validation and exception handling. I'm especially interested in writing maintainable code and understanding how applications work behind the scenes.</p>
+            <div class="facts">
+              <div class="fact"><strong>Location:</strong> Lagos, Nigeria</div>
+              <div class="fact"><strong>Degree:</strong> B.Sc. Computer Science (ongoing)</div>
+              <div class="fact"><strong>Focus:</strong> Java Backend Development</div>
+              <div class="fact"><strong>Tools:</strong> Spring Boot, MySQL, Maven</div>
+            </div>
+            <div class="social-list">
+              <a href="https://www.linkedin.com/in/1-am-otuoze?originalSubdomain=ng" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+              <a href="https://www.instagram.com/rx_pips/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+              <a href="https://www.tiktok.com/@1_am_otuoze/" target="_blank" rel="noopener noreferrer">TikTok ↗</a>
+              <a href="https://x.com/1_am_otuoze" target="_blank" rel="noopener noreferrer">X ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" style="background:#fff">
+      <div class="container">
+        <div class="section-title"><div class="eyebrow">What I work with</div><h2>Technical Skills</h2><p>Technologies and practices used in my training and project work.</p></div>
+        <div class="cards">
+          <article class="card"><h3>Backend Development</h3><div class="skill-pills"><span class="pill">Java</span><span class="pill">Spring Boot</span><span class="pill">REST APIs</span><span class="pill">CRUD</span></div></article>
+          <article class="card"><h3>Database & Tools</h3><div class="skill-pills"><span class="pill">MySQL</span><span class="pill">Maven</span><span class="pill">IntelliJ IDEA</span><span class="pill">Postman</span></div></article>
+          <article class="card"><h3>Development Practices</h3><div class="skill-pills"><span class="pill">Validation</span><span class="pill">Exception Handling</span><span class="pill">Layered Architecture</span><span class="pill">API Testing</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-title"><div class="eyebrow">My journey</div><h2>Resume</h2><p>Education and hands-on development experience.</p></div>
+        <div class="timeline">
+          <article class="card timeline-item">
+            <div class="date">June 2026 – November 2026</div>
+            <h3>Java Backend Development Intern · Boldlinks Technology Solutions</h3>
+            <p>Worked on backend development using Java. Completed an Employee Management System assessment built with Spring Boot and MySQL, including REST endpoints, request validation, duplicate record checks and exception handling. All assessment tests passed.</p>
+          </article>
+          <article class="card timeline-item">
+            <div class="date">January 2024 – Expected 2027</div>
+            <h3>B.Sc. Computer Science · Bamidele Olumilua University of Education, Science and Technology, Ikere-Ekiti</h3>
+            <p>Undergraduate studies in Computer Science.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" style="background:#fff">
+      <div class="container">
+        <div class="section-title"><div class="eyebrow">Selected work</div><h2>Portfolio</h2><p>A backend project completed during my development training.</p></div>
+        <div class="project-grid">
+          <article class="project-card">
+            <img src="assets/employee-entity.jpeg" alt="Employee entity class in IntelliJ IDEA" loading="lazy">
+            <div class="content"><h3>Employee Management System</h3><p>Java entity and database field mapping for a Spring Boot REST API using MySQL.</p></div>
+          </article>
+          <article class="project-card">
+            <img src="assets/employee-controller.jpeg" alt="Employee controller REST endpoints in IntelliJ IDEA" loading="lazy">
+            <div class="content"><h3>REST API Controller</h3><p>Controller implementation for retrieving, updating and deleting employee records.</p></div>
+          </article>
+        </div>
+        <div class="card" style="margin-top:20px">
+          <h3>Project overview</h3>
+          <p>The Employee Management System provides employee record management through REST endpoints. The assessment covered create, read, update and delete operations, validation, duplicate email and phone checks, not-found handling and consistent error responses. Built with Java, Spring Boot, MySQL and Maven.</p>
+          <div class="skill-pills" style="margin-top:16px"><span class="pill">Java</span><span class="pill">Spring Boot</span><span class="pill">MySQL</span><span class="pill">Maven</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="photos">
+      <div class="container">
+        <div class="section-title"><div class="eyebrow">Moments</div><h2>Photo Gallery</h2><p>A few moments from my learning journey and everyday life.</p></div>
+        <div class="gallery">
+          <img src="assets/gallery-1.jpeg" alt="Working at a laptop" loading="lazy">
+          <img src="assets/gallery-2.jpeg" alt="Casual portrait" loading="lazy">
+          <img src="assets/gallery-3.jpeg" alt="Java coding on a laptop" loading="lazy">
+          <img src="assets/gallery-4.jpeg" alt="Portrait in traditional clothing" loading="lazy">
+          <img src="assets/gallery-5.jpeg" alt="Outdoor portrait" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-title"><div class="eyebrow" style="color:#9fcfff">Get in touch</div><h2>Contact</h2><p>Connect with me about Java backend development, projects and opportunities.</p></div>
+        <div class="contact-grid">
+          <div class="contact-card"><h3>Location</h3><p>Lagos, Nigeria</p></div>
+          <div class="contact-card"><h3>LinkedIn</h3><p><a href="https://www.linkedin.com/in/1-am-otuoze?originalSubdomain=ng" target="_blank" rel="noopener noreferrer">linkedin.com/in/1-am-otuoze</a></p></div>
+          <div class="contact-card"><h3>Instagram</h3><p><a href="https://www.instagram.com/rx_pips/" target="_blank" rel="noopener noreferrer">@rx_pips</a></p></div>
+          <div class="contact-card"><h3>TikTok</h3><p><a href="https://www.tiktok.com/@1_am_otuoze/" target="_blank" rel="noopener noreferrer">@1_am_otuoze</a></p></div>
+          <div class="contact-card"><h3>X</h3><p><a href="https://x.com/1_am_otuoze" target="_blank" rel="noopener noreferrer">@1_am_otuoze</a></p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Umar Abdullah Otuoze · Built with HTML, CSS & JavaScript.</footer>
+  <script>
+    const toggle = document.getElementById('menuToggle');
+    const nav = document.getElementById('siteNav');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('sideYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
